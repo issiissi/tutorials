@@ -14,5 +14,5 @@ dependencies    = [
   "numpy>=1.24.1",
   "opencv-python>=4.8.0.74",
   "black>=25.9.0",
-  #  "ultralytics>=8.0.117"
+  "ultralytics>=8.0.117"
 ]
