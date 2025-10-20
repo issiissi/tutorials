@@ -48,7 +48,7 @@ print(img[:,0])
 
 #  Now continue with the color image by copying it to the variable 'img'.
 img=img_color.copy()
-# TODO Set an area of the image to black by looping over the pixels and setting the pixel values to [0,0,0].
+#  Set an area of the image to black by looping over the pixels and setting the pixel values to [0,0,0].
 for i in range(0,10):
     for j in range (0,10):
        img[i,j:]=[0,0,0]

@@ -40,16 +40,19 @@ font_size_small = 1
 font_size_smaller = 0.6
 font = cv2.FONT_HERSHEY_SIMPLEX
 
-# TODO Define  RGB colors as variables
+# Define  RGB colors as variables
+red= 100
+green=0
+blue=255
 
 # Exemplary color conversion (only for the class), tests usage of cv2.cvtColor
 
-# TODO Enter some default values and uncomment
-# hue =
+# Enter some default values and uncomment
+hue = 10
 hue_range = 10
-# saturation =
+saturation =100
 saturation_range = 100
-# value =
+value =100
 value_range = 100
 
 
@@ -71,22 +74,33 @@ while True:
         # Copy image to draw on
         img = frame.copy()
 
-        # TODO Compute color ranges for display
+        #  Compute color ranges for display
+        lower_color=np.array([hue-hue_range,saturation - saturation_range, value - value_range])
+        upper_color=np.array([hue + hue_range, saturation + saturation_range, value + value_range])
 
         # TODO Draw selection color circle and text for HSV values
+        img=cv2.circle (img, (width-80,height-80),30,(blue,green,red)-1)
+        img=cv2.putText(img, "H=" +str(hue), (width - 200, height - 75),font,font_size_small,red,thin)
+        img=cv2.putText(img, "S=" +str(saturation), (width - 200, height - 75) font,font_size_small,red,thin)
+        img=cv2.putText(img, "V=" +str(value), (width - 200, height - 75)font,font_size_small,red,thin)
 
         # TODO Convert to HSV
-        hsv = "TODO: replace this with the conversion code"
+        hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV) 
 
         # TODO Create a bitwise mask
+        mask=cv2.inRange( hsv, lower_color,upper_color )
 
         # TODO Apply mask
+        masked=cv2.bitwise_and(img,img,mask=mask )
 
         # TODO Show the original image with drawings in one window
+        cv2.imshow("original",img)
 
         # TODO Show the masked image in another window
+        cv2.imshow("masked",masked)
 
         # TODO Show the mask image in another window
+        cv2.imshow("mask",mask)
 
         # TODO Deal with keyboard input
 
